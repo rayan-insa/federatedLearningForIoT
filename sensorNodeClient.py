@@ -22,7 +22,7 @@ class SensorNode():
 
     def generateSensorsData(self):
         # Generate random data
-        data = []
+        dataWithoutY = []
 
         for i in range(self.sendingNumber):
             longitude = stationDic[self.stationId][0]
@@ -42,17 +42,24 @@ class SensorNode():
                 else :
                     temperature = random.randint(20, 30)
             condition = random.choice(conditions)
-            data.append([self.stationId, latitude, longitude, temperature, timestamp, condition])
 
-
-            with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-                s.connect((DEST_IP, DEST_PORT))
-                s.send(str(data).encode(ENCODER))
-
-                if i == self.sendingNumber-1:
-                    s.send('QUIT'.encode(ENCODER))
             
-        return
+            
+            dataWithoutY.append([self.stationId, latitude, longitude, temperature, timestamp, condition])
+        
+        return dataWithoutY
+            # Appel de function qui genere y en fonctiond e data (X)
+
+            # Appel de function d'entrainement du model avc entrainement
+
+        """with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+            s.connect((DEST_IP, DEST_PORT))
+            s.send(str(data).encode(ENCODER))
+
+            if i == self.sendingNumber-1:
+                s.send('QUIT'.encode(ENCODER))"""
+            
+            # Enregistrement dans un fichier pth des wieghts
         
 
 if __name__ == "__main__":
