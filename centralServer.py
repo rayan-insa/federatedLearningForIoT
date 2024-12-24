@@ -5,7 +5,7 @@ import torch
 import torch.nn as nn
 import numpy as np
 
-def readWeights():
+def readWeights():  
     # Read the weights from the file
     # Return the weights
     pass
