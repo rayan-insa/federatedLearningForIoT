@@ -14,4 +14,5 @@ class WeatherModel(nn.Module):
         x = torch.relu(self.fc1(x))
         x = torch.relu(self.fc2(x))
         x = self.fc3(x)
+        x = torch.sigmoid(x)
         return x
